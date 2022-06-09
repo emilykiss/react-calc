@@ -1,13 +1,21 @@
 import React, { Component } from "react";
 export default class Calculator extends Component {
   state = {
-    num1: "",
-    num2: "",
+    num1: 0,
+    num2: 0,
+    sum: 0
   };
 
-onChange = (e) => {
-    e.preventDefault();
-  };
+  setNum = e => {
+      const changedInput = {
+          [e.target.name]: Number(e.target.value)
+      }
+    this.setState(changedInput)
+  }
+  calculate = e => {
+       e.preventDefault()
+       this.setState({sum: this.state.num1 + this.state.num2 })
+  }
 
   render() {
     return (
@@ -29,7 +37,7 @@ onChange = (e) => {
             onChange={this.setNum}
           />
           <button>=</button>
-          <h3>{this.state.sum}</h3>
+          <h2>{this.state.sum}</h2>
         </form>
       </div>
     );
